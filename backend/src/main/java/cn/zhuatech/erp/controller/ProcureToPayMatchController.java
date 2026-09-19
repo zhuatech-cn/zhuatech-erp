@@ -1,0 +1,26 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
+package cn.zhuatech.erp.controller;
+
+import cn.zhuatech.erp.common.ApiResponse;
+import cn.zhuatech.erp.service.ProcureToPayMatchService;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/enterprise/erp")
+public class ProcureToPayMatchController {
+    private final ProcureToPayMatchService service;
+
+    public ProcureToPayMatchController(ProcureToPayMatchService service) {
+        this.service = service;
+    }
+
+    @PostMapping("/procure-to-pay-match")
+    public ApiResponse<ProcureToPayMatchService.Assessment> assess(
+            @Valid @RequestBody ProcureToPayMatchService.Request request) {
+        return ApiResponse.ok("采购三单匹配完成", service.assess(request));
+    }
+}
