@@ -10,8 +10,14 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class InventoryTurnoverService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result analyze(Request request) {
         BigDecimal turnover = request.annualCostOfSales().divide(request.averageInventoryValue(), 2, RoundingMode.HALF_UP);
         BigDecimal daysOnHand = turnover.signum() == 0 ? new BigDecimal("999.00")
@@ -34,12 +40,18 @@ public class InventoryTurnoverService {
         return new Result(request.skuCode(), turnover, daysOnHand, stockCoverageDays, status, actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String skuCode,
                           @DecimalMin("0.01") BigDecimal annualCostOfSales,
                           @DecimalMin("0.01") BigDecimal averageInventoryValue,
                           @DecimalMin("0") BigDecimal currentInventoryValue,
                           @DecimalMin("0") BigDecimal safetyInventoryValue) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String skuCode, BigDecimal turnoverTimes, BigDecimal daysOnHand,
                          BigDecimal stockCoverageDays, String status, List<String> actions) {}
 }

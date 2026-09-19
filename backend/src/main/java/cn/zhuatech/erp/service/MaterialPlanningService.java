@@ -14,8 +14,14 @@ import java.math.RoundingMode;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class MaterialPlanningService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result plan(Request request) {
         List<ItemPlan> items = request.items().stream()
             .map(this::planItem)
@@ -31,6 +37,9 @@ public class MaterialPlanningService {
             shortageItems == 0 ? "库存结构健康，按周复核需求预测" : "优先下单高风险物料，并同步校验供应商承诺交期");
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private ItemPlan planItem(ItemInput item) {
         BigDecimal projectedStock = item.onHand().add(item.inboundQty()).subtract(item.forecastDemand());
         BigDecimal suggestedOrder = item.safetyStock().add(item.forecastDemand())
@@ -46,10 +55,16 @@ public class MaterialPlanningService {
             item.leadDays(), item.unitCost(), riskLevel, action);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private int riskRank(String riskLevel) {
         return switch (riskLevel) { case "HIGH" -> 3; case "MEDIUM" -> 2; default -> 1; };
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ItemInput(@NotBlank String sku,
                             @NotBlank String name,
                             @NotNull @DecimalMin("0") BigDecimal onHand,
@@ -58,10 +73,19 @@ public class MaterialPlanningService {
                             @NotNull @DecimalMin("0") BigDecimal inboundQty,
                             @Min(0) int leadDays,
                             @NotNull @DecimalMin("0") BigDecimal unitCost) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotEmpty List<@Valid ItemInput> items) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ItemPlan(String sku, String name, BigDecimal projectedStock,
                            BigDecimal suggestedOrder, int leadDays, BigDecimal unitCost,
                            String riskLevel, String action) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(List<ItemPlan> items, long shortageItems, BigDecimal capitalRequired,
                          String recommendation) {}
 }

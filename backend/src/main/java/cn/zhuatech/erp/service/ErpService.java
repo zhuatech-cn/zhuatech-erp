@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class ErpService {
     private final ProductRepository products;
@@ -20,6 +23,9 @@ public class ErpService {
     private final FinanceRecordRepository financeRecords;
     private final CurrentUserService currentUser;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ErpService(ProductRepository products, PartnerRepository partners,
                       SalesOrderRepository salesOrders, PurchaseOrderRepository purchaseOrders,
                       StockMovementRepository stockMovements, FinanceRecordRepository financeRecords,
@@ -33,6 +39,9 @@ public class ErpService {
         this.currentUser = currentUser;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public Product createProduct(ProductCreateRequest request) {
         if (products.existsBySku(request.sku())) throw new BusinessException("商品 SKU 已存在");
@@ -40,6 +49,9 @@ public class ErpService {
             request.costPrice(), request.salePrice(), request.stockOnHand(), request.safetyStock()));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public BusinessPartner createPartner(PartnerCreateRequest request) {
         if (partners.existsByCode(request.code())) throw new BusinessException("往来单位编码已存在");
@@ -48,6 +60,9 @@ public class ErpService {
             request.address(), request.creditLimit()));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public SalesOrder createSalesOrder(SalesOrderCreateRequest request) {
         if (salesOrders.existsByOrderNo(request.orderNo())) throw new BusinessException("销售订单号已存在");
@@ -60,6 +75,9 @@ public class ErpService {
             SalesOrder.Status.DRAFT, currentUser.get().getFullName()));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public SalesOrder changeSalesStatus(Long id, String status) {
         SalesOrder order = salesOrders.findById(id).orElseThrow(() -> new BusinessException("销售订单不存在"));
@@ -71,6 +89,9 @@ public class ErpService {
         return order;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public PurchaseOrder createPurchaseOrder(PurchaseOrderCreateRequest request) {
         if (purchaseOrders.existsByOrderNo(request.orderNo())) throw new BusinessException("采购订单号已存在");
@@ -82,6 +103,9 @@ public class ErpService {
             PurchaseOrder.Status.DRAFT, currentUser.get().getFullName()));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public PurchaseOrder changePurchaseStatus(Long id, String status) {
         PurchaseOrder order = purchaseOrders.findById(id).orElseThrow(() -> new BusinessException("采购订单不存在"));
@@ -93,6 +117,9 @@ public class ErpService {
         return order;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public StockMovement createStockMovement(StockMovementCreateRequest request) {
         Product product = products.findById(request.productId()).orElseThrow(() -> new BusinessException("商品不存在"));
@@ -105,6 +132,9 @@ public class ErpService {
             product.getStockOnHand(), request.referenceNo(), currentUser.get().getFullName(), LocalDateTime.now()));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public FinanceRecord createFinanceRecord(FinanceCreateRequest request) {
         if (financeRecords.existsByRecordNo(request.recordNo())) throw new BusinessException("财务单据号已存在");
@@ -113,6 +143,9 @@ public class ErpService {
             request.referenceNo(), request.remark()));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Transactional
     public FinanceRecord settleFinanceRecord(Long id, BigDecimal amount) {
         FinanceRecord record = financeRecords.findById(id).orElseThrow(() -> new BusinessException("财务单据不存在"));

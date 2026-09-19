@@ -9,12 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @RestController
 @RequestMapping("/api/erp/insights")
 public class WorkingCapitalController {
     private final WorkingCapitalService service;
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public WorkingCapitalController(WorkingCapitalService service) { this.service = service; }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/working-capital")
     public ApiResponse<WorkingCapitalService.Result> analyze(@Valid @RequestBody WorkingCapitalService.Request request) {
         return ApiResponse.ok(service.analyze(request));

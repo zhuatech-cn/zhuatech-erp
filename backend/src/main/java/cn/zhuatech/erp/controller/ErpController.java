@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import java.time.*;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @RestController
 @RequestMapping("/api/erp")
 public class ErpController {
@@ -23,6 +26,9 @@ public class ErpController {
     private final FinanceRecordRepository financeRecords;
     private final ErpService service;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ErpController(ProductRepository products, PartnerRepository partners,
                          SalesOrderRepository salesOrders, PurchaseOrderRepository purchaseOrders,
                          StockMovementRepository stockMovements, FinanceRecordRepository financeRecords,
@@ -36,6 +42,9 @@ public class ErpController {
         this.service = service;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/dashboard")
     public ApiResponse<DashboardView> dashboard() {
         LocalDateTime start = LocalDate.now().atStartOfDay();
@@ -47,17 +56,26 @@ public class ErpController {
             stockMovements.countByOccurredAtBetween(start, start.plusDays(1))));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/products")
     public ApiResponse<List<ProductView>> products() {
         return ApiResponse.ok(products.findAllByOrderByIdDesc().stream().map(ProductView::from).toList());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/products")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     public ApiResponse<ProductView> createProduct(@Valid @RequestBody ProductCreateRequest request) {
         return ApiResponse.ok("商品创建成功", ProductView.from(service.createProduct(request)));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/partners")
     public ApiResponse<List<PartnerView>> partners(@RequestParam(required = false) String type) {
         var data = type == null ? partners.findAllByOrderByNameAsc()
@@ -65,23 +83,35 @@ public class ErpController {
         return ApiResponse.ok(data.stream().map(PartnerView::from).toList());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/partners")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER')")
     public ApiResponse<PartnerView> createPartner(@Valid @RequestBody PartnerCreateRequest request) {
         return ApiResponse.ok("往来单位创建成功", PartnerView.from(service.createPartner(request)));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/sales-orders")
     public ApiResponse<List<SalesOrderView>> salesOrders() {
         return ApiResponse.ok(salesOrders.findAllByOrderByOrderDateDescIdDesc().stream().map(SalesOrderView::from).toList());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/sales-orders")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER','SALES')")
     public ApiResponse<SalesOrderView> createSalesOrder(@Valid @RequestBody SalesOrderCreateRequest request) {
         return ApiResponse.ok("销售订单创建成功", SalesOrderView.from(service.createSalesOrder(request)));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PatchMapping("/sales-orders/{id}/status")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER','SALES','WAREHOUSE')")
     public ApiResponse<SalesOrderView> changeSalesStatus(@PathVariable Long id,
@@ -89,17 +119,26 @@ public class ErpController {
         return ApiResponse.ok(SalesOrderView.from(service.changeSalesStatus(id, request.status())));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/purchase-orders")
     public ApiResponse<List<PurchaseOrderView>> purchaseOrders() {
         return ApiResponse.ok(purchaseOrders.findAllByOrderByOrderDateDescIdDesc().stream().map(PurchaseOrderView::from).toList());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/purchase-orders")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER','PURCHASING')")
     public ApiResponse<PurchaseOrderView> createPurchaseOrder(@Valid @RequestBody PurchaseOrderCreateRequest request) {
         return ApiResponse.ok("采购订单创建成功", PurchaseOrderView.from(service.createPurchaseOrder(request)));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PatchMapping("/purchase-orders/{id}/status")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER','PURCHASING','WAREHOUSE')")
     public ApiResponse<PurchaseOrderView> changePurchaseStatus(@PathVariable Long id,
@@ -107,28 +146,43 @@ public class ErpController {
         return ApiResponse.ok(PurchaseOrderView.from(service.changePurchaseStatus(id, request.status())));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/stock-movements")
     public ApiResponse<List<StockMovementView>> stockMovements() {
         return ApiResponse.ok(stockMovements.findTop30ByOrderByOccurredAtDesc().stream().map(StockMovementView::from).toList());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/stock-movements")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER','WAREHOUSE')")
     public ApiResponse<StockMovementView> createStockMovement(@Valid @RequestBody StockMovementCreateRequest request) {
         return ApiResponse.ok("库存流水创建成功", StockMovementView.from(service.createStockMovement(request)));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/finance-records")
     public ApiResponse<List<FinanceView>> financeRecords() {
         return ApiResponse.ok(financeRecords.findAllByOrderByDueDateAscIdDesc().stream().map(FinanceView::from).toList());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/finance-records")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER','FINANCE')")
     public ApiResponse<FinanceView> createFinanceRecord(@Valid @RequestBody FinanceCreateRequest request) {
         return ApiResponse.ok("财务单据创建成功", FinanceView.from(service.createFinanceRecord(request)));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PatchMapping("/finance-records/{id}/settle")
     @PreAuthorize("hasAnyRole('ADMIN','MANAGER','FINANCE')")
     public ApiResponse<FinanceView> settleFinanceRecord(@PathVariable Long id,

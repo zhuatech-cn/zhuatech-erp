@@ -9,8 +9,14 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class WorkingCapitalService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result analyze(Request request) {
         BigDecimal days = BigDecimal.valueOf(365);
         BigDecimal dso = request.receivables().multiply(days).divide(request.annualRevenue(), 1, RoundingMode.HALF_UP);
@@ -28,6 +34,9 @@ public class WorkingCapitalService {
         return new Result(request.entityCode(), dso, dpo, inventoryDays, cashConversionCycle, riskLevel, actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String entityCode,
                           @DecimalMin(value = "0.01") BigDecimal annualRevenue,
                           @DecimalMin(value = "0.01") BigDecimal annualCostOfSales,
@@ -35,6 +44,9 @@ public class WorkingCapitalService {
                           @DecimalMin("0") BigDecimal payables,
                           @DecimalMin("0") BigDecimal inventory) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String entityCode, BigDecimal daysSalesOutstanding, BigDecimal daysPayablesOutstanding,
                          BigDecimal inventoryDays, BigDecimal cashConversionCycleDays,
                          String riskLevel, List<String> actions) {}

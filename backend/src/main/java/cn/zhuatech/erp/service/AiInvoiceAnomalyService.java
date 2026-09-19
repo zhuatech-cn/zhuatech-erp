@@ -12,11 +12,20 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class AiInvoiceAnomalyService {
     private final OpenAiCompatibleGateway gateway;
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public AiInvoiceAnomalyService(OpenAiCompatibleGateway gateway) { this.gateway = gateway; }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result inspect(Request request) {
         int score = 0;
         List<String> findings = new ArrayList<>();
@@ -41,11 +50,17 @@ public class AiInvoiceAnomalyService {
             enhanced.isPresent() ? "EXTERNAL_MODEL" : "LOCAL_RULES", metadata.provider(), metadata.model());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String invoiceNumber, @DecimalMin("0.01") BigDecimal amount,
                           @DecimalMin("0") BigDecimal vendorAverageAmount, @NotNull Boolean duplicateReference,
                           @NotNull Boolean bankAccountChanged, @NotNull Boolean purchaseOrderMatched,
                           @NotNull Boolean receiptMatched, @NotNull BigDecimal taxRateDeviation,
                           @Min(0) int vendorAgeDays) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(int anomalyScore, String decision, BigDecimal amountRatio, String explanation,
                          List<String> findings, String aiMode, String provider, String model) {}
 }

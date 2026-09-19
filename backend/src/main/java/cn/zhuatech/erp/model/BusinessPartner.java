@@ -4,10 +4,19 @@ package cn.zhuatech.erp.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Entity
 @Table(name = "erp_partner")
 public class BusinessPartner extends BaseEntity {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Type { CUSTOMER, SUPPLIER }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Status { ACTIVE, SUSPENDED }
 
     @Column(nullable = false, unique = true, length = 40)
@@ -29,8 +38,14 @@ public class BusinessPartner extends BaseEntity {
     @Column(nullable = false, length = 20)
     private Status status = Status.ACTIVE;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     protected BusinessPartner() {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public BusinessPartner(String code, String name, Type type, String contactName, String phone,
                            String address, BigDecimal creditLimit) {
         this.code = code;
@@ -42,13 +57,37 @@ public class BusinessPartner extends BaseEntity {
         this.creditLimit = creditLimit;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public String getCode() { return code; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public String getName() { return name; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Type getType() { return type; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public String getContactName() { return contactName; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public String getPhone() { return phone; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public String getAddress() { return address; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public BigDecimal getCreditLimit() { return creditLimit; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Status getStatus() { return status; }
 }
 

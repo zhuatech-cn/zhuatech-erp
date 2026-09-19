@@ -6,12 +6,21 @@ import cn.zhuatech.erp.service.InventoryTurnoverService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @RestController
 @RequestMapping("/api/erp/insights")
 public class InventoryTurnoverController {
     private final InventoryTurnoverService service;
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public InventoryTurnoverController(InventoryTurnoverService service) { this.service = service; }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/inventory-turnover")
     public ApiResponse<InventoryTurnoverService.Result> analyze(@Valid @RequestBody InventoryTurnoverService.Request request) {
         return ApiResponse.ok(service.analyze(request));

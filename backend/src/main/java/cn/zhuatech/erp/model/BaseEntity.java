@@ -4,6 +4,9 @@ package cn.zhuatech.erp.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @MappedSuperclass
 public abstract class BaseEntity {
     @Id
@@ -16,18 +19,33 @@ public abstract class BaseEntity {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PrePersist
     void prePersist() {
         createdAt = updatedAt = LocalDateTime.now();
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PreUpdate
     void preUpdate() {
         updatedAt = LocalDateTime.now();
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Long getId() { return id; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public LocalDateTime getCreatedAt() { return createdAt; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public LocalDateTime getUpdatedAt() { return updatedAt; }
 }
 

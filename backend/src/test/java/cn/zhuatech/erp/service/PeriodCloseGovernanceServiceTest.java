@@ -4,9 +4,15 @@ package cn.zhuatech.erp.service;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class PeriodCloseGovernanceServiceTest {
     private final PeriodCloseGovernanceService service = new PeriodCloseGovernanceService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void closesFullyReconciledPeriod() {
         var result = service.assess(new PeriodCloseGovernanceService.Request(
                 "2026-08", 6, 6, 0, true, true, true, true));
@@ -14,6 +20,9 @@ class PeriodCloseGovernanceServiceTest {
         assertThat(result.reconciliationCoverage()).isEqualTo(100);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void blocksIncompletePeriod() {
         var result = service.assess(new PeriodCloseGovernanceService.Request(
                 "2026-09", 5, 3, 4, false, false, false, false));

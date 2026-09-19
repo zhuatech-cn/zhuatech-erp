@@ -4,9 +4,15 @@ import jakarta.validation.constraints.*;
 import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.*;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class VendorPaymentBatchGovernanceService {
     private static final BigDecimal HIGH_VALUE = new BigDecimal("500000");
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Assessment assess(Request r) {
         List<String> blockers = new ArrayList<>(); List<String> actions = new ArrayList<>();
         if (!r.threeWayMatchPassed()) blockers.add("发票、采购订单与收货记录三单匹配未通过");
@@ -27,13 +33,25 @@ public class VendorPaymentBatchGovernanceService {
         String route = risk == RiskLevel.HIGH ? "应付会计→财务经理→资金负责人" : "应付会计→财务经理";
         return new Assessment(r.batchNo(), decision, risk, route, List.copyOf(blockers), List.copyOf(actions));
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String batchNo, @NotBlank String preparerId, @NotBlank String approverId,
                           @NotNull @DecimalMin("0.01") BigDecimal totalAmount, boolean threeWayMatchPassed,
                           boolean duplicateInvoiceChecked, boolean vendorBankVerified, boolean sanctionsScreeningPassed,
                           boolean accountingPeriodOpen, boolean cashPlanReserved, boolean approvalMatrixPassed,
                           boolean paymentFileSigned, boolean idempotencyKeyRegistered, boolean auditEvidenceAttached,
                           boolean remittanceReconciliationPlanned, boolean urgentPayment, boolean treasuryReviewed) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Assessment(String batchNo, Decision decision, RiskLevel riskLevel, String approvalRoute,
                              List<String> blockers, List<String> actions) {}
-    public enum Decision { RELEASE, REVIEW, BLOCKED } public enum RiskLevel { NORMAL, HIGH }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
+    public enum Decision { RELEASE, REVIEW, BLOCKED } /**
+                                                       * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+                                                       */
+public enum RiskLevel { NORMAL, HIGH }
 }

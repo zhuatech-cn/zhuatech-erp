@@ -9,8 +9,14 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class CashExposureService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result analyze(Request request) {
         BigDecimal netWorkingCapital = request.cashBalance().add(request.receivables()).subtract(request.payables());
         BigDecimal overdueRatio = request.receivables().signum() == 0 ? BigDecimal.ZERO
@@ -27,11 +33,17 @@ public class CashExposureService {
         return new Result(netWorkingCapital, overdueRatio, runwayMonths, riskLevel, actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@DecimalMin("0") BigDecimal receivables,
                           @DecimalMin("0") BigDecimal overdueReceivables,
                           @DecimalMin("0") BigDecimal payables,
                           @DecimalMin("0") BigDecimal cashBalance,
                           @DecimalMin("0") BigDecimal monthlyFixedCost) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(BigDecimal netWorkingCapital, BigDecimal overdueRatio,
                          BigDecimal runwayMonths, String riskLevel, List<String> actions) {}
 }

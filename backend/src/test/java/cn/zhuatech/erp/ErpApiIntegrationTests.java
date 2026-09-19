@@ -12,12 +12,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 class ErpApiIntegrationTests {
     @Autowired
     MockMvc mvc;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void managerCanReadBusinessDashboardAndModules() throws Exception {
         String token = login("demo", "Demo@2026", "MANAGER");
@@ -33,6 +39,9 @@ class ErpApiIntegrationTests {
             .andExpect(jsonPath("$.data").isArray());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void managerCanCreateInboundMovementAndStockIsUpdated() throws Exception {
         String token = login("demo", "Demo@2026", "MANAGER");
@@ -44,6 +53,9 @@ class ErpApiIntegrationTests {
             .andExpect(jsonPath("$.data.afterQuantity").value(62.000));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void salesRoleCannotCreateProductMasterData() throws Exception {
         String token = login("sales", "Demo@2026", "SALES");
@@ -53,11 +65,17 @@ class ErpApiIntegrationTests {
             .andExpect(status().isForbidden());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void unauthenticatedBusinessRequestIsRejected() throws Exception {
         mvc.perform(get("/api/erp/dashboard")).andExpect(status().isForbidden());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void managerCanAnalyzeCashExposure() throws Exception {
         String token = login("demo", "Demo@2026", "MANAGER");
@@ -70,6 +88,9 @@ class ErpApiIntegrationTests {
             .andExpect(jsonPath("$.data.riskLevel").value("HIGH"));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test
     void managerCanGenerateMaterialShortagePlan() throws Exception {
         String token = login("demo", "Demo@2026", "MANAGER");
@@ -89,6 +110,9 @@ class ErpApiIntegrationTests {
             .andExpect(jsonPath("$.data.items[0].riskLevel").value("HIGH"));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String login(String username, String password, String expectedRole) throws Exception {
         String body = mvc.perform(post("/api/auth/login").contentType(MediaType.APPLICATION_JSON)
                 .content("{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}"))

@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Component
 public class OpenAiCompatibleGateway {
     private final String provider;
@@ -18,6 +21,9 @@ public class OpenAiCompatibleGateway {
     private final String apiKey;
     private final RestClient client;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public OpenAiCompatibleGateway(
         @Value("${zhuatech.ai.provider:local}") String provider,
         @Value("${zhuatech.ai.base-url:https://api.deepseek.com}") String baseUrl,
@@ -30,10 +36,16 @@ public class OpenAiCompatibleGateway {
         this.client = RestClient.builder().baseUrl(baseUrl).build();
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Metadata metadata() {
         return new Metadata(provider, model, configured());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Optional<String> complete(String systemPrompt, String businessContext) {
         if (!configured()) return Optional.empty();
         try {
@@ -57,10 +69,16 @@ public class OpenAiCompatibleGateway {
         }
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private boolean configured() {
         return !apiKey.isBlank() && !"local".equalsIgnoreCase(provider);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private Optional<String> extractContent(Map<?, ?> response) {
         if (response == null || !(response.get("choices") instanceof List<?> choices) || choices.isEmpty()) {
             return Optional.empty();
@@ -74,6 +92,9 @@ public class OpenAiCompatibleGateway {
         return Optional.of(content.trim());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Metadata(String provider, String model, boolean configured) {}
 }
 

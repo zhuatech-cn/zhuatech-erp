@@ -7,8 +7,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class ManualJournalPostingGovernanceService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Assessment assess(Request request) {
         List<String> blockers = new ArrayList<>();
         List<String> actions = new ArrayList<>();
@@ -33,6 +39,9 @@ public class ManualJournalPostingGovernanceService {
                 decision, List.copyOf(blockers), List.copyOf(actions));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String journalNo, @NotBlank String batchNo, @Min(2) int lineCount,
                           boolean periodOpen, boolean debitCreditBalanced, boolean accountsActive,
                           boolean dimensionsComplete, boolean sourceEvidenceReady, boolean duplicateCheckClear,
@@ -40,7 +49,13 @@ public class ManualJournalPostingGovernanceService {
                           boolean financeApproved, boolean preparerApproverSeparated, boolean currencyRatesLocked,
                           boolean auditReady, boolean reversalScheduleReady, boolean postingNoticeReady,
                           boolean archivePackageReady) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Assessment(String journalNo, String batchNo, int lineCount, Decision decision,
                              List<String> blockers, List<String> actions) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { POST, REVIEW, BLOCKED }
 }

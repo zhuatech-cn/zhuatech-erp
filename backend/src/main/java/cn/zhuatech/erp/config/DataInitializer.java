@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.*;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Component
 public class DataInitializer implements CommandLineRunner {
     private final UserRepository users;
@@ -21,6 +24,9 @@ public class DataInitializer implements CommandLineRunner {
     private final FinanceRecordRepository financeRecords;
     private final PasswordEncoder encoder;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public DataInitializer(UserRepository users, ProductRepository products, PartnerRepository partners,
                            SalesOrderRepository salesOrders, PurchaseOrderRepository purchaseOrders,
                            StockMovementRepository stockMovements, FinanceRecordRepository financeRecords,
@@ -35,6 +41,9 @@ public class DataInitializer implements CommandLineRunner {
         this.encoder = encoder;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Override
     @Transactional
     public void run(String... args) {
@@ -106,7 +115,13 @@ public class DataInitializer implements CommandLineRunner {
             "EXP-0726", "项目差旅与现场实施费用"));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private BigDecimal money(String value) { return new BigDecimal(value).setScale(2); }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private BigDecimal quantity(String value) { return new BigDecimal(value).setScale(3); }
 }
 

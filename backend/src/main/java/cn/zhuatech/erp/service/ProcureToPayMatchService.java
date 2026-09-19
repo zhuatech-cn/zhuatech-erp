@@ -11,11 +11,18 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 采购订单、收货和供应商发票的确定性三单匹配与付款冻结决策。 */
+/**
+ * 采购订单、收货和供应商发票的确定性三单匹配与付款冻结决策。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class ProcureToPayMatchService {
     private static final BigDecimal HUNDRED = new BigDecimal("100");
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Assessment assess(Request request) {
         List<String> blockers = new ArrayList<>();
         List<String> variances = new ArrayList<>();
@@ -39,11 +46,17 @@ public class ProcureToPayMatchService {
                 totalVariance, decision != Decision.MATCH, List.copyOf(blockers), List.copyOf(variances));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private BigDecimal percentDifference(BigDecimal actual, BigDecimal expected) {
         return actual.subtract(expected).abs().multiply(HUNDRED)
                 .divide(expected, 4, RoundingMode.HALF_UP);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String invoiceNo, @NotBlank String purchaseOrderNo,
                           @NotBlank String receiptNo,
                           @NotNull @DecimalMin("0.0001") BigDecimal orderedQuantity,
@@ -56,9 +69,15 @@ public class ProcureToPayMatchService {
                           boolean vendorMatched, boolean currencyMatched, boolean taxValidated,
                           boolean duplicateInvoice, boolean receiptPosted) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Assessment(String invoiceNo, Decision decision, BigDecimal expectedTotal,
                              BigDecimal unitPriceVariancePercent, BigDecimal totalVariancePercent,
                              boolean paymentHold, List<String> blockers, List<String> variances) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Decision { MATCH, REVIEW, HOLD }
 }

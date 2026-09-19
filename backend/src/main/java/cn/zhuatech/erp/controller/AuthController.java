@@ -10,6 +10,9 @@ import jakarta.validation.Valid;
 import org.springframework.security.authentication.*;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -18,6 +21,9 @@ public class AuthController {
     private final UserRepository users;
     private final CurrentUserService currentUser;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public AuthController(AuthenticationManager authenticationManager, JwtService jwtService,
                           UserRepository users, CurrentUserService currentUser) {
         this.authenticationManager = authenticationManager;
@@ -26,6 +32,9 @@ public class AuthController {
         this.currentUser = currentUser;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @PostMapping("/login")
     public ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         authenticationManager.authenticate(
@@ -34,6 +43,9 @@ public class AuthController {
         return ApiResponse.ok("登录成功", new LoginResponse(jwtService.generate(user.getUsername()), UserView.from(user)));
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @GetMapping("/me")
     public ApiResponse<UserView> me() { return ApiResponse.ok(UserView.from(currentUser.get())); }
 }

@@ -5,9 +5,15 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Entity
 @Table(name = "erp_sales_order")
 public class SalesOrder extends BaseEntity {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Status { DRAFT, CONFIRMED, SHIPPED, COMPLETED, CANCELLED }
 
     @Column(nullable = false, unique = true, length = 40)
@@ -31,8 +37,14 @@ public class SalesOrder extends BaseEntity {
     @Column(length = 50)
     private String ownerName;
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     protected SalesOrder() {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public SalesOrder(String orderNo, BusinessPartner customer, LocalDate orderDate, String itemSummary,
                       int itemCount, BigDecimal totalAmount, BigDecimal paidAmount, Status status, String ownerName) {
         this.orderNo = orderNo;
@@ -46,15 +58,45 @@ public class SalesOrder extends BaseEntity {
         this.ownerName = ownerName;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public void changeStatus(Status status) { this.status = status; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public String getOrderNo() { return orderNo; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public BusinessPartner getCustomer() { return customer; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public LocalDate getOrderDate() { return orderDate; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public String getItemSummary() { return itemSummary; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public int getItemCount() { return itemCount; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public BigDecimal getTotalAmount() { return totalAmount; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public BigDecimal getPaidAmount() { return paidAmount; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Status getStatus() { return status; }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public String getOwnerName() { return ownerName; }
 }
 
