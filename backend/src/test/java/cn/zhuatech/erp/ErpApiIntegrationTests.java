@@ -70,7 +70,26 @@ class ErpApiIntegrationTests {
      */
     @Test
     void unauthenticatedBusinessRequestIsRejected() throws Exception {
-        mvc.perform(get("/api/erp/dashboard")).andExpect(status().isForbidden());
+        mvc.perform(get("/api/erp/dashboard"))
+            .andExpect(status().isUnauthorized())
+            .andExpect(jsonPath("$.message").value("请先登录或重新登录"));
+    }
+
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
+    @Test
+    void authenticationAndRequestErrorsUseStructuredStatusCodes() throws Exception {
+        mvc.perform(get("/api/erp/dashboard").header("Authorization", "Bearer invalid-token"))
+            .andExpect(status().isUnauthorized())
+            .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.message").value("请先登录或重新登录"));
+        mvc.perform(get("/api/auth/login"))
+            .andExpect(status().isMethodNotAllowed())
+            .andExpect(jsonPath("$.message").value("请求方法不支持"));
+        mvc.perform(post("/api/auth/login").contentType(MediaType.APPLICATION_JSON).content("{bad-json"))
+            .andExpect(status().isBadRequest())
+            .andExpect(jsonPath("$.message").value("请求体格式不正确"));
     }
 
     /**
