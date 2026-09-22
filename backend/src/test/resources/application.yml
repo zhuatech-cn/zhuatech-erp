@@ -14,5 +14,5 @@ app:
   jwt:
     secret: test-zhuatech-erp-secret-key-at-least-32-bytes
   cors:
-    allowed-origins: http://localhost:5173
+    allowed-origins: http://localhost:5173,http://127.0.0.1:5173
 
