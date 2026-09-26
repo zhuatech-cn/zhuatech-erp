@@ -238,3 +238,7 @@ Copyright © 2026 **上海如静知华信息科技有限公司**. All rights res
 ## 采购到付款三单匹配
 
 新增 `POST /api/enterprise/erp/procure-to-pay-match`，直接核对采购订单、收货记录和供应商发票的数量、单价、总额、供应商、币种、税务状态与重复发票。容差内返回 `MATCH`；商业偏差进入 `REVIEW`；超收开票、重复发票、供应商或币种不一致返回 `HOLD` 并冻结付款，为后续供应商付款批次提供可解释的前置结果。
+
+## 库存估值关账
+
+新增 `POST /api/enterprise/erp/inventory-valuation-close`，覆盖库存子账与总账勾稽、负库存、暂估、待过账成本、汇率与标准成本版本检查。详见 [库存估值关账](docs/ENTERPRISE_INVENTORY_VALUATION_CLOSE.md)。
