@@ -1,0 +1,77 @@
+{
+  "slug": "erp",
+  "title": "采购订单税额与金额预检",
+  "fields": [
+    {
+      "key": "order_no",
+      "label": "订单号",
+      "type": "ID",
+      "length": 200
+    },
+    {
+      "key": "supplier_code",
+      "label": "供应商",
+      "type": "ID",
+      "length": 200
+    },
+    {
+      "key": "quantity",
+      "label": "采购数量",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2,
+      "min": "0.01"
+    },
+    {
+      "key": "unit_price",
+      "label": "未税单价",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2
+    },
+    {
+      "key": "tax_rate",
+      "label": "税率百分数",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2,
+      "max": "100"
+    },
+    {
+      "key": "total_amount",
+      "label": "含税金额",
+      "type": "DECIMAL",
+      "length": 200,
+      "scale": 2
+    }
+  ],
+  "unique": [
+    [
+      "order_no"
+    ]
+  ],
+  "rules": [
+    {
+      "op": "TAX_TOTAL",
+      "args": [
+        "quantity",
+        "unit_price",
+        "tax_rate",
+        "total_amount"
+      ],
+      "code": "TAX_TOTAL",
+      "message": "含税金额必须等于数量×单价×(1+税率/100)，四舍五入两位",
+      "bad": {
+        "total_amount": "141.24"
+      }
+    }
+  ],
+  "sampleCsv": "order_no,supplier_code,quantity,unit_price,tax_rate,total_amount\nPO-001,SUP-01,10,12.50,13,141.25\n",
+  "limits": {
+    "rows": 500,
+    "bytes": 262144,
+    "columns": 32,
+    "cellCharacters": 4000
+  },
+  "scope": "Read-only batch validation; no persistence, reference-master lookup or full production certification."
+}
