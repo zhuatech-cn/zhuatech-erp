@@ -49,7 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-      } catch (JwtException | UsernameNotFoundException ignored) {
+      } catch (JwtException | UsernameNotFoundException | IllegalArgumentException ignored) {
         SecurityContextHolder.clearContext();
       }
     }

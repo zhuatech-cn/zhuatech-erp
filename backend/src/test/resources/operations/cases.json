@@ -1,0 +1,57 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "REVIEW",
+      "allocatedCharges": "#120",
+      "landedCost": "#2120",
+      "landedUnitCost": "#106"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "lineNet": "10001"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "totalNet": "0"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "receivedQty": "0"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "lineNet": "0"
+    },
+    "expected": {
+      "landedCost": "#0",
+      "landedUnitCost": "#0"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "lineNet": "1",
+      "totalNet": "3",
+      "freight": "1",
+      "insurance": "0",
+      "receivedQty": "1"
+    },
+    "expected": {
+      "allocatedCharges": "#0.33",
+      "landedUnitCost": "#1.33"
+    },
+    "error": false
+  }
+]
